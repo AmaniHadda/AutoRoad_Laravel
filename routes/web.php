@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StaticControllerB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StaticControllerF;
@@ -33,4 +34,17 @@ Route::get('/admin/vehicules',[StaticControllerB::class,'VehiculesAdmin'])->name
 Route::get('/admin/trajets',[StaticControllerB::class,'TrajetsAdmin'])->name('TrajetsAdmin');
 Route::get('/admin/contacts',[StaticControllerB::class,'ContactsAdmin'])->name('ContactsAdmin');
 
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
 

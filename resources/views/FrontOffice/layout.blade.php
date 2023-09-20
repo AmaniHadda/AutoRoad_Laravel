@@ -30,7 +30,7 @@
     
 	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="index.html">Auto<span>road</span></a>
+	      <a class="navbar-brand" href="/">Auto<span>road</span></a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
@@ -40,9 +40,22 @@
 	          <li class="nav-item @if(Route::currentRouteName() == 'home') active @endif"><a href="{{route('home')}}" class="nav-link">Home</a></li>
 	          <li class="nav-item @if(Route::currentRouteName() == 'about') active @endif"><a href="{{route('about')}}" class="nav-link">About</a></li>
 	          <li class="nav-item @if(Route::currentRouteName() == 'pricing') active @endif"><a href="{{route('pricing')}}" class="nav-link">Pricing</a></li>
-	          <li class="nav-item @if(Route::currentRouteName() == 'car') active @endif"><a href="{{route('car')}}" class="nav-link">Our Car</a></li>
+	          {{-- <li class="nav-item @if(Route::currentRouteName() == 'car') active @endif"><a href="{{route('car')}}" class="nav-link">Our Car</a></li> --}}
 	          <li class="nav-item @if(Route::currentRouteName() == 'blog') active @endif"><a href="{{route('blog')}}" class="nav-link">Blog</a></li>
 	          <li class="nav-item @if(Route::currentRouteName() == 'contact') active @endif"><a href="{{route('contact')}}" class="nav-link">Contact</a></li>
+            @if (Route::has('login'))
+            <li>
+                @auth
+                    <li class="nav-item @if(Route::currentRouteName() == 'profile') active @endif"><a href="{{ url('/profile') }}" class="nav-link">{{ Auth::user()->name }}</a></li>
+                @else
+                    <li class="nav-item @if(Route::currentRouteName() == 'login') active @endif"><a href="{{ route('login') }}" class="nav-link">Log in</a></li>
+
+                    @if (Route::has('register'))
+                        <li class="nav-item @if(Route::currentRouteName() == 'register') active @endif"><a href="{{ route('register') }}" class="nav-link">Register</a></li>
+                    @endif
+                @endauth
+            </li>
+        @endif
 	        </ul>
 	      </div>
 	    </div>
