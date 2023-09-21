@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Autoroad - Free Bootstrap 4 Template by Colorlib</title>
+    <title>Autoroad</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -47,6 +47,15 @@
             <li>
                 @auth
                     <li class="nav-item @if(Route::currentRouteName() == 'profile') active @endif"><a href="{{ url('/profile') }}" class="nav-link">{{ Auth::user()->name }}</a></li>
+                      <form method="POST" action="{{ route('logout') }}" class="nav-item">
+                        @csrf
+                        <a href="route('logout')"
+                        class="nav-link"
+                                onclick="event.preventDefault();
+                                            this.closest('form').submit();">
+                            {{ __('Log Out') }}
+                      </a>
+                    </form>
                 @else
                     <li class="nav-item @if(Route::currentRouteName() == 'login') active @endif"><a href="{{ route('login') }}" class="nav-link">Log in</a></li>
 
