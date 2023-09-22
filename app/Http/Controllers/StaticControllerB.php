@@ -10,6 +10,7 @@ class StaticControllerB extends Controller
         return view('BackOffice.dashboard');
     }
     public function accountAdmin () {
+        
         return view('BackOffice.account');
     }
     public function loginAdmin () {
