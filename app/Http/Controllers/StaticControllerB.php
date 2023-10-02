@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\models\Reclamation;
 
 use Illuminate\Http\Request;
 
@@ -28,6 +29,12 @@ class StaticControllerB extends Controller
     public function ReservationsAdmin () {
         return view('BackOffice.reservations');
     }
+
+    public function  ReclamationssAdmin () {
+        $reclamations = Reclamation::all();
+        return view('BackOffice.reclamations.index', compact('reclamations'));
+    }
+   
     public function VehiculesAdmin () {
         return view('BackOffice.vehicules');
     }

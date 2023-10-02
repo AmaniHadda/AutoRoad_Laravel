@@ -12,7 +12,7 @@ class Reclamation extends Model
     use HasFactory;
     public function user()
     {
-        return $this->belongsTo(User::class, 'id');
+        return $this->belongsTo(User::class);
     }
 
     /**
@@ -21,9 +21,9 @@ class Reclamation extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'user_id',
         'subject',
-        'message',
+        'message'
     ];
     
     // You can remove the incomplete $hidden property.

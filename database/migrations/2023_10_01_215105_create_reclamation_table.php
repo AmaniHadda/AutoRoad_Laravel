@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('user_id')  // Change this to foreignId to define a foreign key
                 ->constrained('users')   // Use constrained method to define the constraint
                 ->onDelete('cascade');
-            $table->string('name');
+            //$table->string('name');
             $table->string('subject');
             $table->string('message');
             $table->timestamps();

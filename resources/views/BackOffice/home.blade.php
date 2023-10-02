@@ -178,6 +178,12 @@
                   <div data-i18n="Basic">Réservations</div>
                 </a>
               </li>
+              <li class="menu-item @if(Route::currentRouteName() == 'ReclamationssAdmin') active @endif">
+                <a href="{{route('ReclamationssAdmin')}}" class="menu-link">
+                  <i class="menu-icon tf-icons bx bx-book-content"></i>
+                  <div data-i18n="Basic">Réclamations</div>
+                </a>
+              </li>
             <li class="menu-item @if(Route::currentRouteName() == 'BlogsAdmin') active @endif">
                 <a href="{{route('BlogsAdmin')}}" class="menu-link">
                   <i class="menu-icon tf-icons bx bxl-blogger"></i>

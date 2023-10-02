@@ -39,6 +39,7 @@
 	        <ul class="navbar-nav ml-auto">
 	          <li class="nav-item @if(Route::currentRouteName() == 'home') active @endif"><a href="{{route('home')}}" class="nav-link">Home</a></li>
 	          <li class="nav-item @if(Route::currentRouteName() == 'about') active @endif"><a href="{{route('about')}}" class="nav-link">About</a></li>
+            <li class="nav-item @if(Route::currentRouteName() == 'reclamations') active @endif"><a href="{{route('reclamations')}}" class="nav-link">Reclamations</a></li>
 	          <li class="nav-item @if(Route::currentRouteName() == 'pricing') active @endif"><a href="{{route('pricing')}}" class="nav-link">Pricing</a></li>
 	          {{-- <li class="nav-item @if(Route::currentRouteName() == 'car') active @endif"><a href="{{route('car')}}" class="nav-link">Our Car</a></li> --}}
 	          <li class="nav-item @if(Route::currentRouteName() == 'blog') active @endif"><a href="{{route('blog')}}" class="nav-link">Blog</a></li>

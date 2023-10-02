@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileAdminController;
+use App\Http\Controllers\ReclamationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StaticControllerB;
 use Illuminate\Support\Facades\Route;
@@ -16,8 +17,14 @@ use App\Http\Controllers\StaticControllerF;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
+/*Reclamation*/
+Route::get('/reclamations', [ReclamationController::class, 'index'])->name('reclamations');
+Route::get('/reclamations/create', [ReclamationController::class, 'create'])->name('reclamations.create');
+Route::post('/reclamations', [ReclamationController::class, 'store'])->name('reclamations.store');
+Route::get('/reclamations/{reclamation}/edit', [ReclamationController::class, 'edit'])->name('reclamations.edit');
+Route::put('/reclamations/{reclamation}', [ReclamationController::class, 'update'])->name('reclamations.update');
+Route::delete('/reclamations/{reclamation}', [ReclamationController::class, 'destroy'])->name('reclamations.destroy');
+/* */
 Route::get('/blog',[StaticControllerF::class,'blog'])->name('blog');
 Route::get('/about',[StaticControllerF::class,'about'])->name('about');
 Route::get('/pricing',[StaticControllerF::class,'pricing'])->name('pricing');
@@ -43,6 +50,8 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function(){
     Route::get('/register',[StaticControllerB::class,'registerAdmin'])->name('registerAdmin');
     Route::get('/forgetpassword',[StaticControllerB::class,'forgetPasswordAdmin'])->name('forgetPAdmin');
     Route::get('/users',[StaticControllerB::class,'UsersAdmin'])->name('UsersAdmin');
+    Route::get('/reclamations',[StaticControllerB::class,'ReclamationssAdmin'])->name('ReclamationssAdmin');
+
     Route::get('/reservations',[StaticControllerB::class,'ReservationsAdmin'])->name('ReservationsAdmin');
     Route::get('/blogs',[StaticControllerB::class,'BlogsAdmin'])->name('BlogsAdmin');
     Route::get('/vehicules',[StaticControllerB::class,'VehiculesAdmin'])->name('VehiculesAdmin');
