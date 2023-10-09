@@ -23,8 +23,10 @@ class Reclamation extends Model
     protected $fillable = [
         'user_id',
         'subject',
-        'message'
+        'message',
+        'treated', 
     ];
+    
     
     // You can remove the incomplete $hidden property.
 }

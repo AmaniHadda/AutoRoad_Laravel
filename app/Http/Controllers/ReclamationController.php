@@ -74,4 +74,26 @@ class ReclamationController extends Controller
 
         return redirect()->route('FrontOffice.reclamations.index')->with('success', 'Reclamation deleted successfully');
     }
+
+
+    public function markAsTreated($id)
+    {
+        $reclamation = Reclamation::findOrFail($id);
+        $reclamation->treated = true;
+        $reclamation->save();
+        
+        return redirect()->back()->with('success', 'Reclamation marked as treated.');
+    }
+    
+    public function markAsNotTreated($id)
+    {
+        $reclamation = Reclamation::findOrFail($id);
+        $reclamation->treated = false;
+        $reclamation->save();
+        
+        return redirect()->back()->with('success', 'Reclamation marked as not treated.');
+    }
+
+
+
 }
