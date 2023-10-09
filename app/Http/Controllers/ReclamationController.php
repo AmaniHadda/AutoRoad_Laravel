@@ -72,7 +72,7 @@ class ReclamationController extends Controller
     {
         $reclamation->delete();
 
-        return redirect()->route('FrontOffice.reclamations.index')->with('success', 'Reclamation deleted successfully');
+        return redirect()->back()->with('success', 'Reclamation deleted successfully.');
     }
 
 

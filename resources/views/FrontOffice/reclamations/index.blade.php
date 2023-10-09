@@ -36,33 +36,32 @@
       <div class="reclamations-section">
         <h1>List of Reclamations</h1>
         <div class="table-responsive text-nowrap">
-          <table class="table">
-            <thead>
+            <table class="table">
+              <thead>
                 <tr>
                     <th>Subject</th>
                     <th>Message</th>
-                    <th>Status</th>
+                    <th class="text-right">Status</th>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach ($reclamations as $reclamation)
-                <tr>
-                    <td>{{ $reclamation->subject }}</td>
-                    <td>{{ $reclamation->message }}</td>
-                    <td>
-                        @if ($reclamation->treated)
-                            <span class="badge badge-success">Treated</span>
-                        @else
-                            <span class="badge badge-danger">Not Treated</span>
-                        @endif
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-        
+            </thead>            
+                <tbody>
+                  @foreach (auth()->user()->reclamations as $reclamation)
+                  <tr>
+                      <td style="max-width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 5px;">{{ $reclamation->subject }}</td>
+                      <td style="max-width: 400px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 5px;">{{ $reclamation->message }}</td>
+                      <td style="padding: 20px;" class="text-right">
+                          @if ($reclamation->treated)
+                              <span class="badge badge-success">Treated</span>
+                          @else
+                              <span class="badge badge-danger">Not Treated</span>
+                          @endif
+                      </td>
+                  </tr>
+                  @endforeach
+              </tbody>              
+            </table>
         </div>
-      </div>
+    </div>    
     </div>
   </div>
 </section>

@@ -18,6 +18,7 @@
                             <th>User</th>
                             <th>Status</th>
                             <th>Action</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
@@ -42,6 +43,12 @@
                                 </form>
                                 @endif
                             </td>
+                            <td>  {{-- Delete Form --}}
+                                <form action="{{ route('reclamations.destroy', $reclamation->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form></td>
                         </tr>
                         @endforeach
                     </tbody>
