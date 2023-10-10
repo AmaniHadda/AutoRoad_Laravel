@@ -22,6 +22,6 @@ class StaticControllerF extends Controller
         return view('FrontOffice.car');
     }
     public function contact () {
-        return view('FrontOffice.contact');
+        return view('FrontOffice.chat');
     }
 }

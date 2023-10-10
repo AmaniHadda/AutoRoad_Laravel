@@ -43,7 +43,7 @@
 	          <li class="nav-item @if(Route::currentRouteName() == 'pricing') active @endif"><a href="{{route('pricing')}}" class="nav-link">Pricing</a></li>
 	          {{-- <li class="nav-item @if(Route::currentRouteName() == 'car') active @endif"><a href="{{route('car')}}" class="nav-link">Our Car</a></li> --}}
 	          <li class="nav-item @if(Route::currentRouteName() == 'blog') active @endif"><a href="{{route('blog')}}" class="nav-link">Blog</a></li>
-	          <li class="nav-item @if(Route::currentRouteName() == 'contact') active @endif"><a href="{{route('contact')}}" class="nav-link">Contact</a></li>
+	          <li class="nav-item @if(Route::currentRouteName() == 'chat') active @endif"><a href="{{route('chat')}}" class="nav-link">Chat</a></li>
             @if (Route::has('login'))
             <li>
                 @auth
