@@ -18,19 +18,6 @@ use App\Http\Controllers\StaticControllerF;
 | contains the "web" middleware group. Now create something great!
 |
 */
-/*Reclamation*/
-Route::get('/reclamations', [ReclamationController::class, 'index'])->name('reclamations');
-Route::get('/reclamations/create', [ReclamationController::class, 'create'])->name('reclamations.create');
-Route::post('/reclamations', [ReclamationController::class, 'store'])->name('reclamations.store');
-Route::get('/reclamations/{reclamation}/edit', [ReclamationController::class, 'edit'])->name('reclamations.edit');
-Route::put('/reclamations/{reclamation}', [ReclamationController::class, 'update'])->name('reclamations.update');
-Route::delete('/reclamations/{reclamation}', [ReclamationController::class, 'destroy'])->name('reclamations.destroy');
-
-
-
-Route::put('/reclamations/{id}/mark-as-treated', [ReclamationController::class, 'markAsTreated'])->name('markAsTreated');
-Route::put('/reclamations/{id}/mark-as-not-treated', [ReclamationController::class, 'markAsNotTreated'])->name('markAsNotTreated');
-
 
 /* */
 Route::get('/blog',[StaticControllerF::class,'blog'])->name('blog');
@@ -43,8 +30,20 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    /*Chat*/
     Route::get('/chat', [ChatController::class, 'chat'])->name('chat');
     Route::post('/send-message', [ChatController::class, 'sendMessage'])->name('chat.sendMessage');
+    /*Reclamation*/
+    Route::get('/reclamations', [ReclamationController::class, 'index'])->name('reclamations');
+    Route::get('/reclamations/create', [ReclamationController::class, 'create'])->name('reclamations.create');
+    Route::post('/reclamations', [ReclamationController::class, 'store'])->name('reclamations.store');
+    Route::get('/reclamations/{reclamation}/edit', [ReclamationController::class, 'edit'])->name('reclamations.edit');
+    Route::put('/reclamations/{reclamation}', [ReclamationController::class, 'update'])->name('reclamations.update');
+    Route::delete('/reclamations/{reclamation}', [ReclamationController::class, 'destroy'])->name('reclamations.destroy');
+    Route::put('/reclamations/{id}/mark-as-treated', [ReclamationController::class, 'markAsTreated'])->name('markAsTreated');
+    Route::put('/reclamations/{id}/mark-as-not-treated', [ReclamationController::class, 'markAsNotTreated'])->name('markAsNotTreated');
+
+
 });
 
 Route::get('/dashboard', function () {
