@@ -1,13 +1,10 @@
-
 @extends('FrontOffice.layout')
 @section('content')
-
 
 <section class="ftco-section contact-section">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-4">
-                <!-- User list -->
                 <div class="card">
                     <div class="card-header">User List</div>
                     <div class="card-body">
@@ -24,44 +21,53 @@
                 </div>
             </div>
             <div class="col-md-8">
-                <!-- Chat area -->
                 <div class="card">
                     <div class="card-header">Chat</div>
                     <div class="card-body">
-                        <!-- Display chat messages here -->
                         <div class="chat-box">
-                            @if($receiverId)
                             <div class="chat-header">
+                                @if($receiverId)
                                 <h5>Chatting with {{ $receiverName }}</h5>
+                                @else
+                                <h5>Select a user to start a conversation.</h5>
+                                @endif
                             </div>
-                            <div class="chat-messages">
+                            <div class="chat-messages" style="max-height: 400px; overflow-y: auto; overflow-x: hidden;">
                                 @foreach($messages as $message)
                                 @if($message->user_id == auth()->user()->id)
-                                <div class="message sent">
-                                    {{ $message->content }}
+                                <div class="row justify-content-end mb-2">
+                                    <div class="col-6">
+                                        <div class="message sent bg-primary text-white rounded p-2">
+                                            {{ $message->message }}
+                                        </div>
+                                    </div>
                                 </div>
                                 @else
-                                <div class="message received">
-                                    {{ $message->content }}
+                                <div class="row mb-2">
+                                    <div class="col-6">
+                                        <div class="message received bg-light rounded p-2">
+                                            {{ $message->message }}
+                                        </div>
+                                    </div>
                                 </div>
                                 @endif
                                 @endforeach
                             </div>
+                            
                             <div class="chat-input">
-                                <!-- Message input form -->
+                                @if($receiverId)
                                 <form action="{{ route('chat.sendMessage') }}" method="post">
                                     @csrf
                                     <input type="hidden" name="receiver_id" value="{{ $receiverId }}">
-                                    <input type="text" name="message" class="form-control"
-                                        placeholder="Type your message...">
-                                    <button type="submit" class="btn btn-primary">Send</button>
+                                    <div class="input-group">
+                                        <textarea name="message" class="form-control" rows="1" placeholder="Type your message..."></textarea>
+                                        <div class="input-group-append">
+                                            <button type="submit" class="btn btn-primary">Send</button>
+                                        </div>
+                                    </div>
                                 </form>
+                                @endif
                             </div>
-                            @else
-                            <div class="no-chat-selected">
-                                <p>Select a user to start a conversation.</p>
-                            </div>
-                            @endif
                         </div>
                     </div>
                 </div>
