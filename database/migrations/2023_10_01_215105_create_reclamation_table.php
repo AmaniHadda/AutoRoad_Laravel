@@ -21,7 +21,15 @@ return new class extends Migration
             //$table->string('name');
             $table->string('subject');
             $table->string('message');
+            $table->string('driver_name'); 
             $table->timestamps();
+
+
+            //partie yossra
+
+            //$table->unsignedBigInteger('trajet_id');
+           // $table->foreign('trajet_id')->references('id')->on('trajets')->onDelete('cascade');
+            //$table->unsignedBigInteger('user_id');
         });
     }
 

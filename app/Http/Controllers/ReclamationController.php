@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Mail\DriverNotification;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use App\Models\Reclamation;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 
 class ReclamationController extends Controller
@@ -13,53 +15,54 @@ class ReclamationController extends Controller
     public function index()
     {
         $reclamations = Reclamation::all();
-        return view('FrontOffice.reclamations.index', compact('reclamations'));
+        $drivers = User::where('role', 'driver')->get(); // Assuming 'driver' is the role name for drivers
+        return view('FrontOffice.reclamations.index', compact('reclamations', 'drivers'));
     }
+    
 
-    // Show the form for creating a new reclamation
-    public function create()
-    {
-        return view('FrontOffice.reclamations.create');
-    }
 
-    // Store a newly created reclamation in the database
     public function store(Request $request)
     {
         // Validate the request data
         $validatedData = $request->validate([
             'reclamationSubject' => 'required|string',
             'reclamationMessage' => 'required|string',
-            // Add more validation rules as needed
+            'driver' => 'required',
         ]);
     
-        // Add 'user_id' to the validated data
-        $validatedData['user_id'] = Auth::user()->id;
-        $validatedData['subject']= $validatedData['reclamationSubject'];
-        $validatedData['message']= $validatedData['reclamationMessage'];
-
-        // Create the reclamation with the updated data
+        $user = Auth::user();
+    
+        // Check if the user has the "driver" role based on your role attribute
+        if ($user->role === 'driver') {
+            $driverName = $user->name;
+        } else {
+            $driver = User::find($validatedData['driver']);
+            $driverName = $driver->name;
+        }
+    
+        $validatedData['user_id'] = $user->id;
+        $validatedData['subject'] = $validatedData['reclamationSubject'];
+        $validatedData['message'] = $validatedData['reclamationMessage'];
+        $validatedData['driver_name'] = $driverName; // Set the 'driver_name' attribute
+    
         Reclamation::create($validatedData);
-
     
         return redirect()->route('reclamations')->with('success', 'Reclamation created successfully');
     }
     
     
-    // Show the form for editing a reclamation
+    
     public function edit(Reclamation $reclamation)
     {
         return view('FrontOffice.reclamations.edit', compact('reclamation'));
     }
 
-    // Update the specified reclamation in the database
     public function update(Request $request, Reclamation $reclamation)
     {
-        // Validate the request data
         $validatedData = $request->validate([
             'name' => 'required|string',
             'subject' => 'required|string',
             'message' => 'required|string',
-            // Add more validation rules as needed
         ]);
 
         $reclamation->update($validatedData);
@@ -67,7 +70,6 @@ class ReclamationController extends Controller
         return redirect()->route('FrontOffice.reclamations.index')->with('success', 'Reclamation updated successfully');
     }
 
-    // Remove the specified reclamation from the database
     public function destroy(Reclamation $reclamation)
     {
         $reclamation->delete();
@@ -94,6 +96,6 @@ class ReclamationController extends Controller
         return redirect()->back()->with('success', 'Reclamation marked as not treated.');
     }
 
-
-
+        
+   
 }

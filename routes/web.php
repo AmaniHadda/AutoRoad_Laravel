@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileAdminController;
 use App\Http\Controllers\ReclamationController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\MailController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\StaticControllerB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StaticControllerF;
@@ -35,14 +37,13 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/send-message', [ChatController::class, 'sendMessage'])->name('chat.sendMessage');
     /*Reclamation*/
     Route::get('/reclamations', [ReclamationController::class, 'index'])->name('reclamations');
-    Route::get('/reclamations/create', [ReclamationController::class, 'create'])->name('reclamations.create');
     Route::post('/reclamations', [ReclamationController::class, 'store'])->name('reclamations.store');
     Route::get('/reclamations/{reclamation}/edit', [ReclamationController::class, 'edit'])->name('reclamations.edit');
     Route::put('/reclamations/{reclamation}', [ReclamationController::class, 'update'])->name('reclamations.update');
     Route::delete('/reclamations/{reclamation}', [ReclamationController::class, 'destroy'])->name('reclamations.destroy');
     Route::put('/reclamations/{id}/mark-as-treated', [ReclamationController::class, 'markAsTreated'])->name('markAsTreated');
     Route::put('/reclamations/{id}/mark-as-not-treated', [ReclamationController::class, 'markAsNotTreated'])->name('markAsNotTreated');
-
+    /*Mail*/
 
 });
 
@@ -60,12 +61,15 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function(){
     Route::get('/forgetpassword',[StaticControllerB::class,'forgetPasswordAdmin'])->name('forgetPAdmin');
     Route::get('/users',[StaticControllerB::class,'UsersAdmin'])->name('UsersAdmin');
     Route::get('/reclamations',[StaticControllerB::class,'ReclamationssAdmin'])->name('ReclamationssAdmin');
-
     Route::get('/reservations',[StaticControllerB::class,'ReservationsAdmin'])->name('ReservationsAdmin');
     Route::get('/blogs',[StaticControllerB::class,'BlogsAdmin'])->name('BlogsAdmin');
     Route::get('/vehicules',[StaticControllerB::class,'VehiculesAdmin'])->name('VehiculesAdmin');
     Route::get('/trajets',[StaticControllerB::class,'TrajetsAdmin'])->name('TrajetsAdmin');
     Route::get('/contacts',[StaticControllerB::class,'ContactsAdmin'])->name('ContactsAdmin');
+    Route::get('/mails',[StaticControllerB::class,'MailsAdmin'])->name('MailsAdmin');
+    Route::post('/send',[EmailController::class,'send'])->name('send.email');
+    
+
 });
 
 

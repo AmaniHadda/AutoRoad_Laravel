@@ -16,6 +16,7 @@
                             <th>Subject</th>
                             <th>Message</th>
                             <th>User</th>
+                            <th>Driver</th>
                             <th>Status</th>
                             <th>Action</th>
                             <th>Delete</th>
@@ -27,6 +28,7 @@
                             <td>{{ $reclamation->subject }}</td>
                             <td>{{ $reclamation->message }}</td>
                             <td>{{ $reclamation->user->name }}</td>
+                            <td>{{ $reclamation->driver_name}}</td>
                             <td>{{ $reclamation->treated ? 'Treated' : 'Not Treated' }}</td>
                             <td>
                                 @if (!$reclamation->treated)

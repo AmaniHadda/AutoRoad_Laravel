@@ -184,6 +184,12 @@
                   <div data-i18n="Basic">Réclamations</div>
                 </a>
               </li>
+              <li class="menu-item @if(Route::currentRouteName() == 'MailsAdmin') active @endif">
+                <a href="{{route('MailsAdmin')}}" class="menu-link">
+                  <i class="menu-icon tf-icons bx bx-book-content"></i>
+                  <div data-i18n="Basic">Mails</div>
+                </a>
+              </li>
             <li class="menu-item @if(Route::currentRouteName() == 'BlogsAdmin') active @endif">
                 <a href="{{route('BlogsAdmin')}}" class="menu-link">
                   <i class="menu-icon tf-icons bx bxl-blogger"></i>

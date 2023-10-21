@@ -25,6 +25,7 @@ class Reclamation extends Model
         'subject',
         'message',
         'treated', 
+        'driver_name', 
     ];
     
     

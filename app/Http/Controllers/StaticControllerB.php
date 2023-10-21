@@ -47,4 +47,7 @@ class StaticControllerB extends Controller
     public function ContactsAdmin () {
         return view('BackOffice.contacts');
     }
+    public function MailsAdmin () {
+        return view('BackOffice.send-email-to-driver');
+    }
 }

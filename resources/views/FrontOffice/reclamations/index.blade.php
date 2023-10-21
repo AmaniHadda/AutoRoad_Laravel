@@ -21,6 +21,16 @@
         <form action="{{ route('reclamations.store') }}" method="post">
           @csrf
           <div class="form-group">
+          <select class="form-control" name="driver">
+            <option value="">Select a driver</option>
+            @foreach ($drivers as $driver)
+              <option value="{{ $driver->id }}">{{ $driver->name }}</option>
+            @endforeach
+          </select>
+        </div>
+
+        
+          <div class="form-group">
             <label for="reclamationSubject" class="sr-only">Reclamation Subject</label>
             <input type="text" class="form-control" name="reclamationSubject" placeholder="Enter Reclamation Subject" required>
           </div>
@@ -37,18 +47,20 @@
         <h1>List of Reclamations</h1>
         <div class="table-responsive text-nowrap">
             <table class="table">
-              <thead>
-                <tr>
-                    <th>Subject</th>
-                    <th>Message</th>
-                    <th class="text-right">Status</th>
-                </tr>
-            </thead>            
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Message</th>
+                        <th>Driver</th> <!-- Add a new column for the driver's name -->
+                        <th class="text-right">Status</th>
+                    </tr>
+                </thead>
                 <tbody>
                   @foreach (auth()->user()->reclamations as $reclamation)
                   <tr>
                       <td style="max-width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 5px;">{{ $reclamation->subject }}</td>
                       <td style="max-width: 400px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 5px;">{{ $reclamation->message }}</td>
+                      <td class="font-weight-bold">{{ $reclamation->driver_name }}</td>
                       <td style="padding: 20px;" class="text-right">
                           @if ($reclamation->treated)
                               <span class="badge badge-success">Treated</span>
@@ -58,9 +70,11 @@
                       </td>
                   </tr>
                   @endforeach
-              </tbody>              
+              </tbody>
             </table>
         </div>
+    </div>
+    
     </div>    
     </div>
   </div>
