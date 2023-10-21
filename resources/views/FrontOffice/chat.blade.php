@@ -1,6 +1,18 @@
 @extends('FrontOffice.layout')
 @section('content')
 
+<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
+        <div class="col-md-9 ftco-animate pb-5">
+            <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Chat <i class="ion-ios-arrow-forward"></i></span></p>
+          <h1 class="mb-3 bread">Chat</h1>
+        </div>
+      </div>
+    </div>
+  </section>
+
 <section class="ftco-section contact-section">
     <div class="container">
         <div class="row justify-content-center">
@@ -22,12 +34,11 @@
             </div>
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Chat</div>
+                    <div class="card-header">Chatting with {{ $receiverName }}</div>
                     <div class="card-body">
                         <div class="chat-box">
                             <div class="chat-header">
                                 @if($receiverId)
-                                <h5>Chatting with {{ $receiverName }}</h5>
                                 @else
                                 <h5>Select a user to start a conversation.</h5>
                                 @endif
