@@ -19,7 +19,6 @@
                             <th>Driver</th>
                             <th>Status</th>
                             <th>Action</th>
-                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
@@ -44,6 +43,7 @@
                                     
                                 </form>
                                 @else
+                                <div>
                                 <form action="{{ route('markAsNotTreated', $reclamation->id) }}" method="POST">
                                     @csrf
                                     @method('PUT') {{-- Use PUT method for marking as not treated --}}
@@ -52,8 +52,6 @@
                                     </button>
                                 </form>
                                 @endif
-                            </td>
-                            <td>  {{-- Delete Form --}}
                                 <form action="{{ route('reclamations.destroy', $reclamation->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
@@ -64,7 +62,7 @@
                                         </svg>
                                     </button>                                   
                                 </form>
-                            </td>
+                            </td>          
                         </tr>
                         @endforeach
                     </tbody>
