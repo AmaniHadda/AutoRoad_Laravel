@@ -25,11 +25,11 @@ return new class extends Migration
             $table->timestamps();
 
 
-            //partie yossra
+            //partie yossra mta3 trajeet fel migration
 
-            //$table->unsignedBigInteger('trajet_id');
-           // $table->foreign('trajet_id')->references('id')->on('trajets')->onDelete('cascade');
-            //$table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('trajet_id');
+            $table->foreign('trajet_id')->references('id')->on('trajets')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
         });
     }
 
