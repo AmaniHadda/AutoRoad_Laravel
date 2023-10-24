@@ -11,7 +11,7 @@
                 <div class="offset-1 col-10">
                   <div class="card mb-4">
                     <div class="card-header d-flex justify-content-between align-items-center">
-                      <h5 class="mb-0">Basic Layout</h5>
+                      <h5 class="mb-0">Add Event</h5>
                       <a class="float-end" href="/admin/events">
                         <button type="button" class="btn btn-icon btn-outline-secondary">
                           <span class='bx bx-left-arrow-alt'></span>

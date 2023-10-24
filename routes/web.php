@@ -1,11 +1,15 @@
 <?php
 
 use App\Http\Controllers\BlogAdminController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\CommentsClientController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\FavorisController;
 use App\Http\Controllers\ProfileAdminController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReclamationController;
 use App\Http\Controllers\StaticControllerB;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StaticControllerF;
 use App\Http\Controllers\EventController;
@@ -36,6 +40,18 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    /*Chat*/
+    Route::get('/chat', [ChatController::class, 'chat'])->name('chat');
+    Route::post('/send-message', [ChatController::class, 'sendMessage'])->name('chat.sendMessage');
+    /*Reclamation*/
+    Route::get('/reclamations', [ReclamationController::class, 'index'])->name('reclamations');
+    Route::post('/reclamations', [ReclamationController::class, 'store'])->name('reclamations.store');
+    Route::get('/reclamations/{reclamation}/edit', [ReclamationController::class, 'edit'])->name('reclamations.edit');
+    Route::put('/reclamations/{reclamation}', [ReclamationController::class, 'update'])->name('reclamations.update');
+    Route::delete('/reclamations/{reclamation}', [ReclamationController::class, 'destroy'])->name('reclamations.destroy');
+    Route::put('/reclamations/{id}/mark-as-treated', [ReclamationController::class, 'markAsTreated'])->name('markAsTreated');
+    Route::put('/reclamations/{id}/mark-as-not-treated', [ReclamationController::class, 'markAsNotTreated'])->name('markAsNotTreated');
+    /*Mail*/
 });
 Route::middleware(['auth', 'role:client'])->group(function () {
     Route::post('/comments/{id}',[CommentsClientController::class, 'store']);
@@ -58,8 +74,9 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function(){
     Route::get('/login',[StaticControllerB::class,'loginAdmin'])->name('loginAdmin');
     Route::get('/register',[StaticControllerB::class,'registerAdmin'])->name('registerAdmin');
     Route::get('/forgetpassword',[StaticControllerB::class,'forgetPasswordAdmin'])->name('forgetPAdmin');
-    Route::get('/users',[StaticControllerB::class,'UsersAdmin'])->name('UsersAdmin');
+    Route::get('/users',[UsersController::class,'index'])->name('UsersAdmin');
     Route::get('/reservations',[StaticControllerB::class,'ReservationsAdmin'])->name('ReservationsAdmin');
+    Route::get('/reclamations',[StaticControllerB::class,'ReclamationssAdmin'])->name('ReclamationssAdmin');
     Route::resource('/blogs',BlogAdminController::class);
     Route::delete('/comments/{id}/{idBlog}',[CommentsClientController::class,'destroyComment']);   
     Route::get('/search',[BlogAdminController::class,'search'])->name('search');
@@ -83,6 +100,8 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function(){
     Route::get('/trajets',[StaticControllerB::class,'TrajetsAdmin'])->name('TrajetsAdmin');
     Route::resource('/events',EventController::class);
     Route::get('/search',[EventController::class,'search'])->name('search');
+    Route::get('/mails',[StaticControllerB::class,'MailsAdmin'])->name('MailsAdmin');
+    Route::post('/send',[EmailController::class,'send'])->name('send.email');
 });
 
 require __DIR__.'/auth.php';

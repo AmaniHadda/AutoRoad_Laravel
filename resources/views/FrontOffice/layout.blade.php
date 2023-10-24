@@ -38,38 +38,46 @@
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
 	          <li class="nav-item @if(Route::currentRouteName() == 'home') active @endif"><a href="{{route('home')}}" class="nav-link">Home</a></li>
-	          <li class="nav-item @if(Route::currentRouteName() == 'about') active @endif"><a href="{{route('about')}}" class="nav-link">About</a></li>
 	          <li class="nav-item @if(Route::currentRouteName() == 'event') active @endif"><a href="{{route('event')}}" class="nav-link">Events</a></li>
+            @auth
             <li class="nav-item @if(Route::currentRouteName() == 'pricing') active @endif"><a href="{{route('pricing')}}" class="nav-link">Pricing</a></li>
-	          {{-- <li class="nav-item @if(Route::currentRouteName() == 'car') active @endif"><a href="{{route('car')}}" class="nav-link">Our Car</a></li> --}}
+	          @endauth
+            {{-- <li class="nav-item @if(Route::currentRouteName() == 'car') active @endif"><a href="{{route('car')}}" class="nav-link">Our Car</a></li> --}}
+            <li class="nav-item @if(Route::currentRouteName() == 'reclamations') active @endif"><a href="{{route('reclamations')}}" class="nav-link">Reclamations</a></li>
+	          <li class="nav-item @if(Route::currentRouteName() == 'chat') active @endif"><a href="{{route('chat')}}" class="nav-link">Chat</a></li>
 	          <li class="nav-item @if(Route::currentRouteName() == 'blog') active @endif"><a href="{{route('blog')}}" class="nav-link">Blog</a></li>
 	          <li class="nav-item @if(Route::currentRouteName() == 'contact') active @endif"><a href="{{route('contact')}}" class="nav-link">Contact</a></li>
             @if (Route::has('login'))
             <li>
                 @auth
-                <!-- <li class="nav-item @if(Route::currentRouteName() == 'my rides') active @endif"><a href="{{ route('showRideByUser', ['id' => auth()->user()->id]) }}" class="nav-link">My rides</a></li>
-                <li class="nav-item @if(Route::currentRouteName() == 'my rides') active @endif"><a href="{{ route('showRéservationByUser', ['id' => auth()->user()->id]) }}" class="nav-link">My reservations</a></li> -->
                 <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" id="myDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Rides
-    </a>
-    <div class="dropdown-menu" aria-labelledby="myDropdown">
-    <a class="dropdown-item @if(Route::currentRouteName() == 'my rides') active @endif" href="{{ route('rides') }}">All Rides</a>
-        <a class="dropdown-item @if(Route::currentRouteName() == 'my rides') active @endif" href="{{ route('showRideByUser', ['id' => auth()->user()->id]) }}">My rides</a>
-        <a class="dropdown-item @if(Route::currentRouteName() == 'my rides') active @endif" href="{{ route('showRéservationByUser', ['id' => auth()->user()->id]) }}">My reservations</a>
-    </div>
-</li>
-  
-                <li class="nav-item @if(Route::currentRouteName() == 'profile') active @endif"><a href="{{ url('/profile') }}" class="nav-link">{{ Auth::user()->name }}</a></li>
-                      <form method="POST" action="{{ route('logout') }}" class="nav-item">
-                        @csrf
-                        <a href="route('logout')"
-                        class="nav-link"
-                                onclick="event.preventDefault();
-                                            this.closest('form').submit();">
-                            {{ __('Log Out') }}
-                      </a>
-                    </form>
+                  <a class="nav-link dropdown-toggle" href="#" id="myDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Rides
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="myDropdown">
+                  <a class="dropdown-item @if(Route::currentRouteName() == 'my rides') active @endif" href="{{ route('rides') }}">All Rides</a>
+                      <a class="dropdown-item @if(Route::currentRouteName() == 'my rides') active @endif" href="{{ route('showRideByUser', ['id' => auth()->user()->id]) }}">My rides</a>
+                      <a class="dropdown-item @if(Route::currentRouteName() == 'my rides') active @endif" href="{{ route('showRéservationByUser', ['id' => auth()->user()->id]) }}">My reservations</a>
+                  </div>
+            </li> 
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="myDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ Auth::user()->name }}
+              </a>
+              <div class="dropdown-menu" aria-labelledby="myDropdown">
+              <a class="dropdown-item @if(Route::currentRouteName() == 'profile') active @endif" href="{{ url('/profile') }}">My profile</a>
+              <form method="POST" action="{{ route('logout') }}" class="nav-item">
+                @csrf
+                <a href="route('logout')"
+                class="dropdown-item "
+                        onclick="event.preventDefault();
+                                    this.closest('form').submit();" style="color: black">
+                    {{ __('Log Out') }}
+              </a>
+            </form>
+              </div>
+        </li> 
+                      
                 @else
                     <li class="nav-item @if(Route::currentRouteName() == 'login') active @endif"><a href="{{ route('login') }}" class="nav-link">Log in</a></li>
 

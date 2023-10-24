@@ -1,18 +1,28 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Blog;
 use App\Models\contact;
+use App\Models\Event;
 use App\Models\Renting;
+use App\Models\User;
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
 use App\Models\Trajet;
 use App\Models\Réservation;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use App\models\Reclamation;
+
 class StaticControllerB extends Controller
 {
     public function homeAdmin() 
     {
+        $users= User::all()->count();
+        $blogs= Blog::all()->count();
+        $events= Event::all()->count();
+        $vehicules= Vehicle::all()->count();
+        $reclamations= Reclamation::all()->count();
         // Récupérez les données existantes de la base de données
         $contactsData = Contact::whereYear('created_at', 2023)
             ->select(DB::raw('DATE(created_at) as date'), DB::raw('COUNT(*) as count'))
@@ -34,7 +44,7 @@ class StaticControllerB extends Controller
             $counts[] = $existingData[$dayKey] ?? 0;
         }
     
-        return view('BackOffice.dashboard', compact('daysOfWeek', 'counts'));
+        return view('BackOffice.dashboard', compact('daysOfWeek', 'counts', 'users', 'blogs', 'events', 'vehicules', 'reclamations'));
     }
     public function accountAdmin () 
     {
@@ -84,5 +94,12 @@ class StaticControllerB extends Controller
     }
     public function ReservationsAdmin () {
         return view('BackOffice.Réservation.réservations',['listRéservations'=>Réservation::all()]);
+    }
+    public function MailsAdmin () {
+        return view('BackOffice.send-email-to-driver');
+    }
+    public function  ReclamationssAdmin () {
+        $reclamations = Reclamation::all();
+        return view('BackOffice.reclamations.index', compact('reclamations'));
     }
 }

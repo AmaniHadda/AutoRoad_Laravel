@@ -146,7 +146,7 @@
             <li class="menu-item @if(Route::currentRouteName() == 'UsersAdmin') active @endif">
                 <a href="{{route('UsersAdmin')}}" class="menu-link">
                   <i class="menu-icon tf-icons bx bx-user"></i>
-                  <div data-i18n="Basic">Utilisateurs</div>
+                  <div data-i18n="Basic">Users</div>
                 </a>
               </li>
               <li class="menu-item @if(Route::currentRouteName() == 'TrajetsAdmin') active @endif">
@@ -155,72 +155,91 @@
                   <div data-i18n="Basic">Trajets</div>
                 </a>
               </li>
-            <li class="menu-item @if(Route::currentRouteName() == 'VehiculesAdmin') active @endif">
-                <a href="{{route('VehiculesAdmin')}}" class="menu-link">
-                  <i class="menu-icon tf-icons bx bxs-car"></i>
-                  <div data-i18n="Basic">Vehicules</div>
-                </a>
-              </li>
-              <li class="menu-item @if(Route::currentRouteName() == 'RentingAdmin') active @endif">
-                <a href="{{route('RentingAdmin')}}" class="menu-link">
-                  <i class="menu-icon tf-icons bx bxs-cart-add"></i>
-                  <div data-i18n="Basic">Rentings</div>
-                </a>
-              </li>
+
               <li class="menu-item @if(Route::currentRouteName() == 'ReservationsAdmin') active @endif">
                 <a href="{{route('ReservationsAdmin')}}" class="menu-link">
                   <i class="menu-icon tf-icons bx bx-book-content"></i>
                   <div data-i18n="Basic">Réservations</div>
                 </a>
               </li>
+              <li class="menu-item">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                  <i class="menu-icon tf-icons bx bxs-cart-add"></i>
+                  <div data-i18n="Authentications">Rentings</div>
+                </a>
+                <ul class="menu-sub">
+                  <li class="menu-item @if(Route::currentRouteName() == 'VehiculesAdmin') active @endif">
+                    <a href="{{route('VehiculesAdmin')}}" class="menu-link">
+                      <i class="menu-icon tf-icons bx bxs-car"></i>
+                      <div data-i18n="Basic">Vehicules</div>
+                    </a>
+                  </li>
+                  <li class="menu-item @if(Route::currentRouteName() == 'RentingAdmin') active @endif">
+                    <a href="{{route('RentingAdmin')}}" class="menu-link">
+                      <i class="menu-icon tf-icons bx bxs-cart-add"></i>
+                      <div data-i18n="Basic">Rentings</div>
+                    </a>
+                  </li>
+                </ul>
+              </li> 
             <li class="menu-item @if(Request::is('/admin/blogs')) active @endif">
                 <a href="/admin/blogs" class="menu-link">
                   <i class="menu-icon tf-icons bx bxl-blogger"></i>
                   <div data-i18n="Basic">Blogs</div>
                 </a>
               </li>
-            
-              <li class="menu-item @if(Route::currentRouteName() == 'ContactsAdmin') active @endif">
-                <a href="/admin/listContact" class="menu-link">
+              <li class="menu-item">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
                   <i class="menu-icon tf-icons bx bxs-contact"></i>
-                  <div data-i18n="Basic">Contacts</div>
+                  <div data-i18n="Authentications">Contacts</div>
                 </a>
-            </li>
-            <li class="menu-item @if(Route::currentRouteName() == 'RisquesAdmin') active @endif">
-                <a href="/admin/listRisque" class="menu-link">
-                  <i class="menu-icon tf-icons bx bx-trip"></i>
-                  <div data-i18n="Basic">Risques</div>
-                </a>
-            </li>
+                <ul class="menu-sub">
+                  <li class="menu-item @if(Route::currentRouteName() == 'ContactsAdmin') active @endif">
+                    <a href="/admin/listContact" class="menu-link">
+                      <i class="menu-icon tf-icons bx bxs-contact"></i>
+                      <div data-i18n="Basic">Contacts</div>
+                    </a>
+                </li>
+                <li class="menu-item @if(Route::currentRouteName() == 'RisquesAdmin') active @endif">
+                  <a href="/admin/listRisque" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-trip"></i>
+                    <div data-i18n="Basic">Risques</div>
+                  </a>
+              </li>
+                </ul>
+              </li> 
+            
+             
+           
             <li class="menu-item @if(Request::is('admin/events')) active @endif">
                 <a href="/admin/events" class="menu-link">
                   <i class="menu-icon tf-icons bx bxs-calendar-event"></i>
                   <div data-i18n="Basic">Events</div>
                 </a>
               </li>
-            <li class="menu-item">
-              <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
-                <div data-i18n="Authentications">Authentications</div>
-              </a>
-              <ul class="menu-sub">
-                <li class="menu-item">
-                  <a href="{{route('loginAdmin')}}" class="menu-link" target="_blank">
-                    <div data-i18n="Basic">Login</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="{{route('registerAdmin')}}" class="menu-link" target="_blank">
-                    <div data-i18n="Basic">Register</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="{{route('forgetPAdmin')}}" class="menu-link" target="_blank">
-                    <div data-i18n="Basic">Forgot Password</div>
-                  </a>
-                </li>
-              </ul>
-            </li>                  
+              <li class="menu-item">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                  <i class="menu-icon tf-icons bx bx-book-content"></i>
+                  <div data-i18n="Authentications">Reclamations</div>
+                </a>
+                <ul class="menu-sub">
+                  <li class="menu-item @if(Route::currentRouteName() == 'ReclamationssAdmin') active @endif">
+                    <a href="{{route('ReclamationssAdmin')}}" class="menu-link">
+                      <i class="menu-icon tf-icons bx bx-book-content"></i>
+                      <div data-i18n="Basic">Reclamations</div>
+                    </a>
+                  </li>
+                  <li class="menu-item @if(Route::currentRouteName() == 'MailsAdmin') active @endif">
+                    <a href="{{route('MailsAdmin')}}" class="menu-link">
+                      <i class="menu-icon tf-icons bx bx-book-content"></i>
+                      <div data-i18n="Basic">Mails</div>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+             
+              
+                            
           </ul>
         </aside>
         <!-- / Menu -->
@@ -264,7 +283,7 @@
                   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
 
-                      <img src="{{asset('../assets/img/avatars/1.png')}}" alt class="w-px-40 h-auto rounded-circle" />
+                      <img src="{{asset('../images/avatar7.png')}}" alt class="w-px-40 h-auto rounded-circle" />
                     </div>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
@@ -274,7 +293,7 @@
                           <div class="flex-shrink-0 me-3">
                             <div class="avatar avatar-online">
 
-                              <img src="{{asset('../assets/img/avatars/1.png')}}" alt class="w-px-40 h-auto rounded-circle" />
+                              <img src="{{asset('../images/avatar7.png')}}" alt class="w-px-40 h-auto rounded-circle" />
                             </div>
                           </div>
                           <div class="flex-grow-1">

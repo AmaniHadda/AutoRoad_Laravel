@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use App\Models\risque;
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
@@ -11,7 +12,8 @@ class StaticControllerF extends Controller
 {
     public function home() {
         $listTrajets = Trajet::paginate(3);
-        return view('FrontOffice.home', ['listvehicules' => Vehicle::paginate(4), 'listTrajets' => $listTrajets]);
+        $listBlogs=Blog::paginate(3);
+        return view('FrontOffice.home', ['listvehicules' => Vehicle::paginate(4), 'listTrajets' => $listTrajets, 'listBlogs'=>$listBlogs]);
     }
     
     public function blog () {
@@ -37,5 +39,8 @@ class StaticControllerF extends Controller
         $listTrajets = Trajet::paginate(3);
     
         return view('FrontOffice.Trajet.trajets', compact('listTrajets'));
+    }
+    public function contact () {
+        return view('FrontOffice.chat');
     }
 }

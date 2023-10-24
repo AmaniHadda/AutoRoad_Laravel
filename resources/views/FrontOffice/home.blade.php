@@ -1,6 +1,6 @@
 	@extends('FrontOffice.layout')
     @section('content')
-    <div class="hero-wrap" style="background-image: url('images/bg_20.jpg');" data-stellar-background-ratio="0.5">
+    <div class="hero-wrap" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text justify-content-start align-items-center">
@@ -167,79 +167,9 @@
     	</div>
     </section>
    
-    <section class="ftco-section testimony-section">
-      <div class="container">
-        <div class="row justify-content-center mb-5">
-          <div class="col-md-7 text-center heading-section ftco-animate">
-          	<span class="subheading">Testimonial</span>
-            <h2 class="mb-3">Happy Clients</h2>
-          </div>
-        </div>
-        <div class="row ftco-animate">
-          <div class="col-md-12">
-            <div class="carousel-testimony owl-carousel ftco-owl">
-              <div class="item">
-                <div class="testimony-wrap text-center py-4 pb-5">
-                  <div class="user-img mb-4" style="background-image: url(images/person_1.jpg)">
-                  </div>
-                  <div class="text pt-4">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <p class="name">Roger Scott</p>
-                    <span class="position">Marketing Manager</span>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap text-center py-4 pb-5">
-                  <div class="user-img mb-4" style="background-image: url(images/person_2.jpg)">
-                  </div>
-                  <div class="text pt-4">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <p class="name">Roger Scott</p>
-                    <span class="position">Interface Designer</span>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap text-center py-4 pb-5">
-                  <div class="user-img mb-4" style="background-image: url(images/person_3.jpg)">
-                  </div>
-                  <div class="text pt-4">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <p class="name">Roger Scott</p>
-                    <span class="position">UI Designer</span>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap text-center py-4 pb-5">
-                  <div class="user-img mb-4" style="background-image: url(images/person_1.jpg)">
-                  </div>
-                  <div class="text pt-4">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <p class="name">Roger Scott</p>
-                    <span class="position">Web Developer</span>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap text-center py-4 pb-5">
-                  <div class="user-img mb-4" style="background-image: url(images/person_1.jpg)">
-                  </div>
-                  <div class="text pt-4">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <p class="name">Roger Scott</p>
-                    <span class="position">System Analyst</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+   
 
-		<section class="ftco-section ftco-no-pt ftco-no-pb">
+		<section class="mt-5 ftco-section ftco-no-pt ftco-no-pb">
 			<div class="container">
 				<div class="row no-gutters">
 					<div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url(images/about.jpg);">
@@ -267,51 +197,24 @@
           </div>
         </div>
         <div class="row d-flex">
+          @foreach ($listBlogs as $item)
+              
           <div class="col-md-4 d-flex ftco-animate">
           	<div class="blog-entry justify-content-end">
-              <a href="blog-single.html" class="block-20" style="background-image: url('images/image_1.jpg');">
+              <a href="/blog/{{$item->id}}" class="block-20" style="background-image: url('images/blogs/{{$item->image}}');">
               </a>
               <div class="text pt-4">
               	<div class="meta mb-3">
-                  <div><a href="#">July. 24, 2019</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+                  <div><a href="/blog/{{$item->id}}">{{date('d-m-Y', strtotime($item->created_at))}}</a></div>
+                  <div><a href="/blog/{{$item->id}}">{{$item->user->name}}</a></div>
                 </div>
-                <h3 class="heading mt-2"><a href="#">Why Lead Generation is Key for Business Growth</a></h3>
-                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+                <h3 class="heading mt-2"><a href="/blog/{{$item->id}}">{{$item->title}}</a></h3>
+                <p><?php echo substr($item->description, 0, 250); ?>...</p>
               </div>
             </div>
           </div>
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <a href="blog-single.html" class="block-20" style="background-image: url('images/image_2.jpg');">
-              </a>
-              <div class="text pt-4">
-              	<div class="meta mb-3">
-                  <div><a href="#">July. 24, 2019</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                </div>
-                <h3 class="heading mt-2"><a href="#">Why Lead Generation is Key for Business Growth</a></h3>
-                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry">
-              <a href="blog-single.html" class="block-20" style="background-image: url('images/image_3.jpg');">
-              </a>
-              <div class="text pt-4">
-              	<div class="meta mb-3">
-                  <div><a href="#">July. 24, 2019</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                </div>
-                <h3 class="heading mt-2"><a href="#">Why Lead Generation is Key for Business Growth</a></h3>
-                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-              </div>
-            </div>
-          </div>
+          @endforeach
+          
         </div>
       </div>
     </section>		
